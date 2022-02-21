@@ -20,14 +20,11 @@ import { useTranslation } from "react-i18next";
 import { Check } from "react-bootstrap-icons";
 import ChartDataContainer from "../ChartDataContainer";
 import Utils from "src/utils/Utils";
-import { TriangleFill } from "react-bootstrap-icons";
 import ChartTooltip, { ChartTooltipType } from "../ChartTooltip";
 import { CurveType } from "recharts/types/shape/Curve";
-import CustomDropdownToggle from "src/components/CustomDropdownToggle";
-import Dropdown from "react-bootstrap/Dropdown";
-import DataTooltip from "../DataTooltip";
 import { useAppSelector } from "src/redux/hook";
 import { selectDateRange } from "src/redux/DashboardSlice";
+import DropdownDataTooltip, { useShowTooltip } from "../DropdownDataTooltip";
 
 export interface ComposedChartInfoProps {
   data: any;
@@ -96,10 +93,14 @@ const ComposedChartInfo = ({
   const [activeChartTooltip, setActiveChartTooltip] = useState(true);
   const [activeChartTooltipTimeout, setActiveChartTooltipTimeout] =
     useState<NodeJS.Timeout>();
-  const [showingNumberTooltip, setShowingNumberTooltip] = useState(false);
-  const [numberTooltipTimeout, setNumberTooltipTimeout] =
-    useState<NodeJS.Timeout>();
-  const [lastTriggerTooltip, setLastTriggerTooltip] = useState<number>();
+
+  const {
+    showingTooltip: showingNumberTooltip,
+    onClick: onClickNumberDropdown,
+    onMouseEnter: onMouseEnterNumberDropdown,
+    onMouseLeave: onMouseLeaveNumberDropdown,
+    onMouseUp: onMouseUpNumberDropdown,
+  } = useShowTooltip();
   const dateRange = useAppSelector(selectDateRange);
   const tableTitle = "Metric";
   let tableData: TableInfoItem[] = [];
@@ -128,22 +129,6 @@ const ComposedChartInfo = ({
     };
     tableData = Utils.mappingTableData(tableMapping);
   }
-
-  const _clearOldNumberTooltipTimeout = () => {
-    if (numberTooltipTimeout) {
-      clearTimeout(numberTooltipTimeout);
-      setNumberTooltipTimeout(undefined);
-    }
-  };
-
-  const _toggleNumberToolTip = () => {
-    console.log("Toggle tooltoip", showingNumberTooltip);
-    if (!showingNumberTooltip) {
-      _clearOldNumberTooltipTimeout();
-      setActiveChartTooltip(false);
-    }
-    setShowingNumberTooltip(!showingNumberTooltip);
-  };
 
   useEffect(() => {
     const showingDataKey = {};
@@ -302,18 +287,6 @@ const ComposedChartInfo = ({
     );
   };
 
-  // const _renderTooltipItem = (entry, index, payload) => {
-  //   const isLast = index === payload.length - 1;
-  //   return (
-  //     <ChartTooltip
-  //       entry={entry}
-  //       isLast={isLast}
-  //       type={tooltipType}
-  //       data={payload}
-  //     />
-  //   );
-  // };
-
   const _renderTooltip = (props) => {
     const { payload } = props;
     if (!payload || !activeChartTooltip) {
@@ -344,14 +317,6 @@ const ComposedChartInfo = ({
 
     // console.log("tooltipData: ", tooltipData);
     return <ChartTooltip type={tooltipType} data={tooltipData} title={title} />;
-    // return (
-    //   <div className="tooltipBox">
-    //     <div className="tooltipText ">{title?.toUpperCase()}</div>
-    //     {tooltipData.map((entry, index) =>
-    //       _renderTooltipItem(entry, index, tooltipData)
-    //     )}
-    //   </div>
-    // );
   };
 
   const _checkShowChartTooltip = () => {
@@ -363,7 +328,6 @@ const ComposedChartInfo = ({
       setActiveChartTooltipTimeout(undefined);
     }
     setActiveChartTooltip(true);
-    setShowingNumberTooltip(false);
   };
 
   const _handleChartMouseLeave = () => {
@@ -449,35 +413,17 @@ const ComposedChartInfo = ({
     }
 
     return (
-      <Dropdown
+      <DropdownDataTooltip
+        showing={showingNumberTooltip}
         align={"start"}
-        show={showingNumberTooltip}
-        onMouseEnter={(e) => {
-          setShowingNumberTooltip(true);
-          setLastTriggerTooltip(new Date().getTime());
-          setActiveChartTooltip(false);
-        }}
-        onMouseLeave={(e) => {
-          setShowingNumberTooltip(false);
-          setActiveChartTooltip(false);
-        }}
-        onMouseUp={(e) => {
-          const timeout = setTimeout(() => {
-            setShowingNumberTooltip(false);
-            setNumberTooltipTimeout(undefined);
-          }, TOOLTIP_TIMEOUT);
-          setNumberTooltipTimeout(timeout);
-        }}
-        onClick={() => {
-          const now = new Date().getTime();
-          if (lastTriggerTooltip && now - lastTriggerTooltip < 100) {
-            return;
-          }
-          _toggleNumberToolTip();
-        }}
-      >
-        <Dropdown.Toggle as={CustomDropdownToggle}>
-          <div className="rowStart mb16">
+        toggle={
+          <div
+            className="rowStart mb16"
+            onClick={onClickNumberDropdown}
+            onMouseEnter={onMouseEnterNumberDropdown}
+            onMouseLeave={onMouseLeaveNumberDropdown}
+            onMouseUp={onMouseUpNumberDropdown}
+          >
             {typeof value !== "undefined" && (
               <div className="rowCenter largeChartInfo2 mr12">
                 {Utils.formatNumber(value)}
@@ -494,35 +440,25 @@ const ComposedChartInfo = ({
               </div>
             )}
           </div>
-        </Dropdown.Toggle>
-        <Dropdown.Menu className="dropdownDataTooltip">
-          <DataTooltip
-            title={title}
-            data={{
-              ...data,
-              value,
-              previousValue,
-            }}
-            currentColor={COLORS.PRIMARY}
-            previousColor={COLORS.SEPERATOR}
-            currentFromDate={dateRange.startDate}
-            currentToDate={dateRange.endDate}
-            previousFromDate={data.previousFromDate}
-            previousToDate={data.previousToDate}
-          />
-        </Dropdown.Menu>
-      </Dropdown>
+        }
+        tooltipData={{
+          title,
+          data: {
+            ...data,
+            value,
+            previousValue,
+          },
+          currentFromDate: dateRange.startDate,
+          currentToDate: dateRange.endDate,
+          previousFromDate: data.previousFromDate,
+          previousToDate: data.previousToDate,
+        }}
+      />
     );
   };
 
   return (
-    <ChartDataContainer
-      error={error}
-      loading={loading}
-      onRefresh={onRefresh}
-      // onMouseLeave={_handleChartMouseLeave}
-      // onMouseEnter={_handleChartMouseEnter}
-    >
+    <ChartDataContainer error={error} loading={loading} onRefresh={onRefresh}>
       <div className="chartTitle">{title}</div>
       {_renderNumberInfo()}
       <ResponsiveContainer width={"100%"} height={chartHeight} debounce={1}>

@@ -223,7 +223,6 @@ const DonutChartInfo = ({
         data={tooltipData[0].payload}
         title={tooltipData[0].name}
         currentColor={tooltipData[0].payload.fill}
-        previousColor={COLORS.SEPERATOR}
         currentFromDate={tooltipData[0].payload.currentFromDate}
         currentToDate={tooltipData[0].payload.currentToDate}
         previousFromDate={tooltipData[0].payload.previousFromDate}

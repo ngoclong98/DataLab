@@ -1,22 +1,24 @@
 import { TriangleFill } from "react-bootstrap-icons";
 import { useTranslation } from "react-i18next";
+import { COLORS } from "src/Constants";
 import Utils from "src/utils/Utils";
 
 interface DataTooltipProps {
   data: any;
   title?: string;
-  currentColor: string;
-  previousColor: string;
+  currentColor?: string;
+  previousColor?: string;
   currentFromDate?: string | null;
   currentToDate?: string | null;
   previousFromDate?: string | null;
   previousToDate?: string | null;
 }
+
 const DataTooltip = ({
   data,
   title,
-  currentColor,
-  previousColor,
+  currentColor = COLORS.PRIMARY,
+  previousColor = COLORS.SEPERATOR,
   currentFromDate,
   currentToDate,
   previousFromDate,

@@ -4,13 +4,10 @@ import Utils from "src/utils/Utils";
 import ChangeBadge from "../ChangeBadge";
 import { useTranslation } from "react-i18next";
 import ChartDataContainer from "src/components/ChartDataContainer";
-import CustomDropdownToggle from "src/components/CustomDropdownToggle";
-import Dropdown from "react-bootstrap/Dropdown";
-import DataTooltip from "../DataTooltip";
-import { COLORS, TOOLTIP_TIMEOUT } from "src/Constants";
+import { COLORS } from "src/Constants";
 import { useAppSelector } from "src/redux/hook";
 import { selectDateRange } from "src/redux/DashboardSlice";
-import { useState } from "react";
+import DropdownDataTooltip, { useShowTooltip } from "../DropdownDataTooltip";
 export interface SingleNumberInfoProps {
   title: string;
   // value: number;
@@ -41,85 +38,48 @@ const SingleNumberInfo = ({
   const changePercent = changePercentKey ? data?.[changePercentKey] : null;
   const previousPeriod = previousPeriodKey ? data?.[previousPeriodKey] : null;
   const dateRange = useAppSelector(selectDateRange);
-  const [showingTooltip, setShowingTooltip] = useState(false);
-  const [lastTriggerTooltip, setLastTriggerTooltip] = useState<number>();
-  const [tooltipTimeout, setTooltipTimeout] = useState<NodeJS.Timeout>();
-
-  const _clearOldTooltipTimeout = () => {
-    if (tooltipTimeout) {
-      clearTimeout(tooltipTimeout);
-      setTooltipTimeout(undefined);
-    }
-  };
-
-  const _toggleToolTip = () => {
-    if (!showingTooltip) {
-      _clearOldTooltipTimeout();
-    }
-    setShowingTooltip(!showingTooltip);
-  };
-
+  const {
+    showingTooltip,
+    onClick: onClickDropdown,
+    onMouseEnter: onMouseEnterDropdown,
+    onMouseLeave: onMouseLeaveDropdown,
+    onMouseUp: onMouseUpDropdown,
+  } = useShowTooltip();
   return (
     <ChartDataContainer error={error} loading={loading} onRefresh={onRefresh}>
       <div
-        onClick={() => {
-          const now = new Date().getTime();
-          if (lastTriggerTooltip && now - lastTriggerTooltip < 100) {
-            return;
-          }
-          _toggleToolTip();
-        }}
-        onMouseLeave={() => {
-          setShowingTooltip(false);
-        }}
-        onMouseEnter={() => {
-          setShowingTooltip(true);
-          setLastTriggerTooltip(new Date().getTime());
-          _clearOldTooltipTimeout();
-        }}
-        onMouseUp={(e) => {
-          const timeout = setTimeout(() => {
-            setShowingTooltip(false);
-            setTooltipTimeout(undefined);
-          }, TOOLTIP_TIMEOUT);
-          setTooltipTimeout(timeout);
-        }}
+        onClick={onClickDropdown}
+        onMouseLeave={onMouseLeaveDropdown}
+        onMouseEnter={onMouseEnterDropdown}
+        onMouseUp={onMouseUpDropdown}
       >
         <div className="chartTitle">{title}</div>
         <div className="rowCenter largeChartInfo">
-          <Dropdown
-            onToggle={_toggleToolTip}
-            show={showingTooltip}
-            align={"end"}
-          >
-            <Dropdown.Toggle as={CustomDropdownToggle}>
+          <DropdownDataTooltip
+            showing={showingTooltip}
+            toggle={
               <div className="largeChartInfoNumber">
                 {Utils.isNullOrUndefined(value)
                   ? "-"
                   : Utils.formatNumber(value)}
               </div>
-            </Dropdown.Toggle>
-            <Dropdown.Menu className="dropdownDataTooltip">
-              <DataTooltip
-                title={title}
-                data={
-                  !data
-                    ? data
-                    : {
-                        ...data,
-                        value,
-                        previousValue: previousPeriod,
-                      }
-                }
-                currentColor={COLORS.PRIMARY}
-                previousColor={COLORS.SEPERATOR}
-                currentFromDate={dateRange.startDate}
-                currentToDate={dateRange.endDate}
-                previousFromDate={data?.previousFromDate}
-                previousToDate={data?.previousToDate}
-              />
-            </Dropdown.Menu>
-          </Dropdown>
+            }
+            tooltipData={{
+              title,
+              data: !data
+                ? data
+                : {
+                    ...data,
+                    value,
+                    previousValue: previousPeriod,
+                  },
+              currentColor: COLORS.PRIMARY,
+              currentFromDate: dateRange.startDate,
+              currentToDate: dateRange.endDate,
+              previousFromDate: data?.previousFromDate,
+              previousToDate: data?.previousToDate,
+            }}
+          />
         </div>
         {showPreviousPeriod && typeof changePercent !== "undefined" && (
           <div>

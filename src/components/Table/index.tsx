@@ -6,11 +6,8 @@ import { useAppSelector } from "src/redux/hook";
 import { selectDateRange } from "src/redux/DashboardSlice";
 import { useTranslation } from "react-i18next";
 import Utils from "src/utils/Utils";
-import CustomDropdownToggle from "src/components/CustomDropdownToggle";
-import Dropdown from "react-bootstrap/Dropdown";
-import DataTooltip from "../DataTooltip";
-import { COLORS, TOOLTIP_TIMEOUT } from "src/Constants";
-import { useState } from "react";
+import { COLORS } from "src/Constants";
+import DropdownDataTooltip, { useShowTooltip } from "../DropdownDataTooltip";
 interface TableProps {
   title?: string;
   tableTitle: string;
@@ -23,57 +20,26 @@ interface TableInfoProps {
 }
 const TableItem = ({ data, isLast }: TableInfoProps) => {
   const dateRange = useAppSelector(selectDateRange);
-  const [showingTooltip, setShowingTooltip] = useState(false);
-  const [lastTriggerTooltip, setLastTriggerTooltip] = useState<number>();
-  const [tooltipTimeout, setTooltipTimeout] = useState<NodeJS.Timeout>();
-
-  const _toggleToolTip = () => {
-    console.log("Toggle tooltoip", showingTooltip);
-    if (!showingTooltip) {
-      _clearOldTooltipTimeout();
-    }
-    setShowingTooltip(!showingTooltip);
-  };
-
-  const _clearOldTooltipTimeout = () => {
-    if (tooltipTimeout) {
-      clearTimeout(tooltipTimeout);
-      setTooltipTimeout(undefined);
-    }
-  };
+  const {
+    showingTooltip,
+    onClick: onClickDropdown,
+    onMouseEnter: onMouseEnterDropdown,
+    onMouseLeave: onMouseLeaveDropdown,
+    onMouseUp: onMouseUpDropdown,
+  } = useShowTooltip();
 
   return (
     <div>
-      <Dropdown
-        align={"end"}
-        show={showingTooltip}
-        onMouseEnter={(e) => {
-          setShowingTooltip(true);
-          setLastTriggerTooltip(new Date().getTime());
-          _clearOldTooltipTimeout();
-        }}
-        onMouseLeave={(e) => {
-          setShowingTooltip(false);
-        }}
-        onMouseUp={(e) => {
-          const timeout = setTimeout(() => {
-            setShowingTooltip(false);
-            setTooltipTimeout(undefined);
-          }, TOOLTIP_TIMEOUT);
-          setTooltipTimeout(timeout);
-        }}
-        onClick={() => {
-          const now = new Date().getTime();
-          if (lastTriggerTooltip && now - lastTriggerTooltip < 100) {
-            return;
-          }
-          _toggleToolTip();
-        }}
-      >
-        <Dropdown.Toggle as={CustomDropdownToggle}>
+      <DropdownDataTooltip
+        showing={showingTooltip}
+        toggle={
           <div
             className={isLast ? "chartTalbeItemLast" : "chartTalbeItem"}
             key={data.name}
+            onClick={onClickDropdown}
+            onMouseEnter={onMouseEnterDropdown}
+            onMouseLeave={onMouseLeaveDropdown}
+            onMouseUp={onMouseUpDropdown}
           >
             <div className="chartTableItemName flex3">{data.name}</div>
             <div className="chartTableItemValue flex3 d-flex flex-row justify-content-end">
@@ -83,21 +49,16 @@ const TableItem = ({ data, isLast }: TableInfoProps) => {
               <ChangeBadge size={"small"} value={data.changePercent} />
             </div>
           </div>
-        </Dropdown.Toggle>
-
-        <Dropdown.Menu className="dropdownDataTooltip">
-          <DataTooltip
-            title={data.name}
-            data={data}
-            currentColor={COLORS.PRIMARY}
-            previousColor={COLORS.SEPERATOR}
-            currentFromDate={dateRange.startDate}
-            currentToDate={dateRange.endDate}
-            previousFromDate={data.previousFromDate}
-            previousToDate={data.previousToDate}
-          />
-        </Dropdown.Menu>
-      </Dropdown>
+        }
+        tooltipData={{
+          title: data.name,
+          data,
+          currentFromDate: dateRange.startDate,
+          currentToDate: dateRange.endDate,
+          previousFromDate: data.previousFromDate,
+          previousToDate: data.previousToDate,
+        }}
+      />
     </div>
   );
 };
