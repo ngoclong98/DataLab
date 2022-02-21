@@ -1,0 +1,30 @@
+@import "../../styles/globals.scss";
+
+.tabBar {
+  @extend .rowScroll;
+  justify-content: space-evenly;
+}
+.selectedTab {
+  border-bottom: 3px solid $primary;
+  color: $primary;
+  @extend .textBlack2;
+  @extend .body14;
+  @extend .w600;
+  @extend .fontFamily;
+  @extend .textCenter;
+  white-space: nowrap;
+  padding-left: 4px;
+  padding-right: 4px;
+  padding-bottom: 12px;
+}
+.unselectedTab {
+  border-bottom: 1px solid $onSurfaceLightColor;
+  @extend .textGray;
+  @extend .body14;
+  @extend .fontFamily;
+  @extend .textCenter;
+  white-space: nowrap;
+  padding-left: 4px;
+  padding-right: 4px;
+  padding-bottom: 12px;
+}

@@ -1,0 +1,38 @@
+@import "~bootstrap/scss/bootstrap";
+@import "../../styles/variable.scss";
+.refreshContainer {
+  @extend .d-flex;
+  @extend .flex-row;
+  @extend .align-items-center;
+  @extend .justify-content-end;
+  @extend .mt-2;
+  cursor: pointer;
+}
+.reloadIcon {
+  font-size: 20px;
+  margin-right: 12px;
+}
+.exclamationIcon {
+  font-size: 20px;
+  margin-left: 16px;
+  color: $errorColor;
+}
+.loadingOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 5;
+  @extend .d-flex;
+  @extend .flex-row;
+  @extend .align-items-center;
+  @extend .justify-content-center;
+}
+
+.loadingContent {
+  background-color: rgba(0, 0, 0, 0.7);
+  padding: 24px;
+  border-radius: 8px;
+  min-width: 280px;
+}

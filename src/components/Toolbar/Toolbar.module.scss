@@ -1,0 +1,71 @@
+@import "../../styles/variable.scss";
+@import "../../styles/globals.scss";
+@import "~bootstrap/scss/bootstrap";
+
+.toolbarContainer {
+  padding-left: 16px;
+  padding-right: 16px;
+  padding-bottom: 16px;
+  background-color: $surfaceColor;
+  background-size: cover;
+  position: relative;
+  z-index: 10;
+}
+.fixedToolbarContainer {
+  padding-left: 16px;
+  padding-right: 16px;
+  padding-bottom: 16px;
+  background-color: $surfaceColor;
+  box-shadow: 0 0.5rem 1rem 0 $surfaceShadowColor;
+  background-size: cover;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+}
+.toolbar {
+  @extend .d-flex;
+  @extend .flex-row;
+  @extend .justify-content-between;
+  position: relative;
+  width: 100%;
+}
+.titleContainer {
+  @extend .rowCenter;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  pointer-events: none;
+  padding: 0px 100px;
+}
+.backImg {
+  width: 24px;
+  height: 24px;
+}
+.backIconPlaceholder {
+  width: 20px;
+  height: 20px;
+}
+.suffixButtonContainer {
+  @extend .rowCenter;
+  position: absolute;
+  // background: $onPrimaryColor;
+  right: 0px;
+  box-shadow: 0px 4px 30px rgba(25, 25, 46, 0.06);
+  border-radius: 8px;
+  padding: 11px;
+  height: 38px;
+  width: 38px;
+}
+.suffixButton {
+  width: 16px;
+  height: 16px;
+}
+.threeDotIcon {
+  font-size: 24px;
+  color: $onPrimaryColor;
+  margin-left: 16px;
+}

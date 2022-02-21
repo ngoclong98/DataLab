@@ -1,0 +1,27 @@
+@import "../../styles/globals.scss";
+
+.inputContainer {
+  @extend .rowStart;
+  border: 1px solid $seperatorColor;
+  box-sizing: border-box;
+  border-radius: 8px;
+  padding: 0px 12px;
+  background-color: $backgroundColor;
+}
+.input {
+  width: 100%;
+  height: 48px;
+  border: none;
+  border-radius: 8px;
+  background-color: transparent;
+  font-size: 14px;
+  color: $onSurfaceColor;
+}
+.input::placeholder {
+  @extend .body14;
+  color: $onSurfaceLightColor;
+}
+.input:focus {
+  outline-width: 0;
+  outline: none;
+}

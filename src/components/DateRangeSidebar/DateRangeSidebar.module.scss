@@ -1,0 +1,24 @@
+@import "../../styles/globals.scss";
+@import "../../styles/variable.scss";
+@import "~bootstrap/scss/bootstrap";
+.rangeItem {
+  @extend .body14;
+  @extend .textOnSurface;
+  @extend .d-flex;
+  @extend .flex-row;
+  @extend .align-items-center;
+  padding: 12px 16px;
+  background-color: $surfaceColor;
+  cursor: pointer;
+}
+
+.rangeItemActive {
+  @extend .body14;
+  @extend .textOnSurface;
+  @extend .d-flex;
+  @extend .flex-row;
+  @extend .align-items-center;
+  padding: 12px 16px;
+  background-color: $backgroundColor;
+  cursor: pointer;
+}

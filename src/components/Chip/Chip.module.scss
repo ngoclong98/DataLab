@@ -1,0 +1,10 @@
+@import "../../styles/globals.scss";
+@import "../../styles/variable.scss";
+.activeContainer {
+  @extend .subTitle12;
+  @extend .rowCenter;
+  background-color: $primaryColor;
+  padding: 10px 16px;
+  color: $onPrimaryColor;
+  border-radius: 8px;
+}

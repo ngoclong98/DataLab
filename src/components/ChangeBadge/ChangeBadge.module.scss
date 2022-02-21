@@ -1,0 +1,57 @@
+@import "../../styles/variable.scss";
+@import "../../styles/globals.scss";
+.increaseIcon {
+  font-size: 10px;
+  margin-right: 10px;
+  color: $successColor;
+}
+.decreaseIcon {
+  font-size: 10px;
+  margin-right: 10px;
+  color: $dangerColor;
+}
+
+.increaseIconSmall {
+  font-size: 8px;
+  margin-right: 6px;
+  color: $successColor;
+}
+.decreaseIconSmall {
+  font-size: 8px;
+  margin-right: 6px;
+  color: $dangerColor;
+}
+
+.changeItem {
+  @extend .rowCenter;
+  background-color: $backgroundColor;
+  padding: 4px 16px;
+  border-radius: 4px;
+}
+
+.changeItemIncrease {
+  @extend .rowCenter;
+  background-color: $successColor10;
+  padding: 4px 16px;
+  border-radius: 4px;
+}
+
+.changeItemDecrese {
+  @extend .rowCenter;
+  background-color: $dangerColor10;
+  padding: 4px 16px;
+  border-radius: 4px;
+}
+.changeItemSmallIncrease {
+  @extend .rowCenter;
+  background-color: $successColor10;
+  padding: 2px 4px;
+  border-radius: 4px;
+}
+
+.changeItemSmallDecrease {
+  @extend .rowCenter;
+  background-color: $dangerColor10;
+  padding: 2px 4px;
+  border-radius: 4px;
+}

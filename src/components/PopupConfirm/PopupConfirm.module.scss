@@ -1,0 +1,28 @@
+.dialogContent {
+  border-radius: 16px;
+}
+
+.behind {
+  z-index: 25;
+}
+
+.contentContainer {
+  padding: 32px 32px 24px 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.footer {
+  padding: 0px 32px 32px 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.linkButton {
+  flex: 1;
+  display: flex;
+  text-decoration: none;
+}

@@ -1,0 +1,52 @@
+/* $dashboardButton: #192038;*/
+
+$primaryColor: #36f;
+$surfaceColor: #222b45;
+$surfaceShadowColor: #1a1f33;
+$onSurfaceColor: #fff;
+$onSurfaceLightColor: #8f9bb3;
+// $seperatorColor: #101426;
+$seperatorColor: #151a30;
+$backgroundColor: #151a30;
+$successColor: #00d68f;
+$successColor10: rgba(0, 214, 143, 0.1);
+$dangerColor: #ff3d71;
+$dangerColor10: rgba(255, 61, 113, 0.1);
+$warningColor: #f6b100;
+$onPrimaryColor: #ffffff;
+$errorColor: #db3832;
+$lightBlue2: #e6e7f9;
+$secondaryColor: #dd0071;
+$whiteColor: #ffffff;
+$theme-colors: (
+  "primary": $primaryColor,
+);
+$inputHeight: 48px;
+
+/* Bootstrap */
+
+$body-color: $onSurfaceColor;
+$body-bg: $backgroundColor;
+$navbar-light-active-color: $secondaryColor;
+$navbar-light-color: $primaryColor;
+$navbar-light-hover-color: $secondaryColor;
+$navbar-nav-link-padding-x: 0px;
+$navbar-nav-link-padding-x: 0px;
+$font-family-base: "Roboto", sans-serif;
+$btn-font-family: "Roboto";
+$btn-font-weight: 600;
+$btn-line-height: 24px;
+$btn-font-size: 16px;
+$btn-padding-y: 12px;
+$btn-padding-x: 48px;
+$btn-border-radius: 8px;
+$modal-content-border-radius: 8px;
+$modal-content-bg: $surfaceColor;
+
+/* $input-border-color: $gray2;
+$input-placeholder-color: $placeholderColor;
+$accordion-button-active-color: $textBlack;
+$accordion-button-bg: $whiteColor;
+$accordion-button-active-bg: $whiteColor;
+$form-feedback-invalid-color: $errorColor;
+$accordion-border-color: $gray2; */

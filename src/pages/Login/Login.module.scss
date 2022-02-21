@@ -1,0 +1,18 @@
+@import "../../styles/variable.scss";
+@import "../../styles/globals.scss";
+@import "~bootstrap/scss/bootstrap";
+.loginFormCard {
+  @extend .d-flex;
+  @extend .flex-column;
+  margin: 64px 16px 32px 16px;
+  background-color: $surfaceColor;
+  border: 1px solid $seperatorColor;
+  border-radius: 4px;
+  padding: 32px 16px;
+}
+.loginTitle {
+  margin-bottom: 64px;
+  @extend .textOnSurface;
+  @extend .title32;
+  @extend .text-center;
+}

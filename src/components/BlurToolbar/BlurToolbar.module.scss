@@ -1,0 +1,36 @@
+@import "../../styles/globals.scss";
+.outerContainer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+}
+.container {
+  @extend .rowSpaceBetween;
+  padding: 6px 16px;
+  position: relative;
+}
+.backBtn {
+  @extend .rowCenter;
+  background: rgba(140, 140, 140, 0.2);
+  backdrop-filter: blur(10px);
+  border-radius: 8px;
+  width: 36px;
+  height: 36px;
+}
+.backImg {
+  width: 22px;
+  height: 22px;
+}
+
+.titleContainer {
+  @extend .rowCenter;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  pointer-events: none;
+  padding: 0px 50px;
+}

@@ -1,0 +1,107 @@
+:root {
+  /* --statusbar-height: calc(max(44px, env(safe-area-inset-top))); */
+  --statusbar-height: 16px;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+.toolbarContainerTop {
+  padding-top: var(--statusbar-height) !important;
+}
+.Toastify__toast-container--top-right {
+  top: var(--statusbar-height) !important;
+}
+.ril__toolbar {
+  top: var(--statusbar-height) !important;
+  display: none !important;
+}
+.lightboxHideNavigateControl .ril__navButtonPrev {
+  display: none !important;
+}
+.lightboxHideNavigateControl .ril__navButtonNext {
+  display: none !important;
+}
+
+.blurToolbarSpacing {
+  padding-top: calc(var(--statusbar-height) + 48px);
+}
+
+.screenContainer {
+  min-height: 100vh;
+  width: 100%;
+  height: 100%;
+}
+
+.screenScrollContainer {
+  padding-top: calc(var(--statusbar-height) + 40px);
+}
+/* .scrollable {
+  overflow-y: scroll;
+  overscroll-behavior: none;
+} */
+body::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+body::-webkit-scrollbar-thumb {
+  background: #101426;
+  cursor: pointer;
+  border-radius: 4px;
+}
+body::-webkit-scrollbar-track {
+  background: #222b45;
+}
+
+.bottomButtonBlock {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  box-sizing: border-box;
+  padding: 16px 16px calc(max(0px, env(safe-area-inset-bottom)) + 16px) 16px;
+  z-index: 20;
+  background-color: white;
+  box-shadow: 0px -4px 16px rgba(0, 0, 0, 0.12);
+}
+
+.bottomButtonBlockBlur {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  box-sizing: border-box;
+  padding: 16px 16px calc(max(0px, env(safe-area-inset-bottom)) + 16px) 16px;
+  z-index: 20;
+  background: #ffffff;
+  box-shadow: 0px 0px 15px rgba(25, 25, 46, 0.08);
+  border-radius: 0px;
+}
+
+.bottomButtonBlock2 {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  box-sizing: border-box;
+  padding: 16px 16px calc(max(0px, env(safe-area-inset-bottom)) + 16px) 16px;
+  z-index: 20;
+}
+
+.bottomButtonSpacer {
+  height: calc(16px + 40px + max(0px, env(safe-area-inset-bottom)) + 16px);
+}
+.bottomBarSpacer {
+  padding-bottom: calc(max(0px, env(safe-area-inset-bottom)));
+}
+.heartBarSpacer {
+  height: 110px;
+}
+.Toastify__toast {
+  box-shadow: none !important;
+}
+
+.Toastify__toast-theme--light {
+  background: transparent !important;
+}

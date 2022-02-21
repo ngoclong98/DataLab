@@ -1,0 +1,70 @@
+@import "./globals.scss";
+@import "./variable.scss";
+@import "~bootstrap/scss/bootstrap";
+.sidebarTitleContaier {
+  padding: 0px 16px 16px 16px;
+}
+.sidebarTitle {
+  @extend .subTitle24;
+  padding-bottom: 12px;
+}
+
+.sideBarSearchIcon {
+  font-size: 20px;
+  color: $onSurfaceColor;
+  margin-right: 12px;
+}
+.sidebarHeader {
+  @extend .body18;
+  @extend .d-flex;
+  @extend .flex-row;
+  @extend .align-items-center;
+  padding: 18px;
+  background-color: $surfaceColor;
+  cursor: pointer;
+  border-bottom: 0.5px solid $seperatorColor;
+}
+.sidebarHeader:focus {
+  outline: none !important;
+}
+.sidebarItem {
+  @extend .body16;
+  @extend .d-flex;
+  @extend .flex-row;
+  @extend .align-items-center;
+  padding: 14px;
+  margin: 0px 16px;
+  background-color: $surfaceColor;
+  cursor: pointer;
+  border-bottom: 0.5px solid $seperatorColor;
+}
+.sidebarBody {
+  padding: 0 !important;
+  background-color: $surfaceColor;
+}
+.sidebarNoResult {
+  padding: 120px 32px 32px 32px;
+  @extend .d-flex;
+  @extend .flex-row;
+  @extend .justify-content-center;
+}
+
+.sidebarDot {
+  width: 10px;
+  height: 10px;
+  border-radius: 5px;
+  margin-right: 12px;
+}
+.sidebarActiveDot {
+  @extend .sidebarDot;
+  background-color: $successColor;
+}
+
+.sidebarInactiveDot {
+  @extend .sidebarDot;
+  background-color: $onSurfaceLightColor;
+}
+.sidebarChevron {
+  font-size: 13px;
+  color: $onSurfaceLightColor;
+}

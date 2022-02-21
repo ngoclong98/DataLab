@@ -1,0 +1,18 @@
+@import "../../styles/globals.scss";
+
+.popupModal {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  z-index: 1000;
+  @extend .rowCenter;
+}
+
+.loadingContent {
+  background-color: rgba(0, 0, 0, 0.7);
+  padding: 24px;
+  border-radius: 8px;
+  min-width: 280px;
+}

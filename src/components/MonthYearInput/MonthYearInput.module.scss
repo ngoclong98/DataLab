@@ -1,0 +1,61 @@
+@import "../../styles/variable.scss";
+
+.input {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 14px 16px;
+  background: $onPrimaryColor;
+  border: 1px solid $seperatorColor;
+  box-sizing: border-box;
+  border-radius: 8px;
+}
+
+.carretDownImg {
+  width: 12px;
+  height: 8px;
+  margin-left: 8px;
+}
+
+.bottomSheetContent {
+  padding-left: 16px;
+  padding-right: 16px;
+  width: 100%;
+}
+
+.calendarIcon {
+  width: 20px;
+  height: 20px;
+}
+.monthYearContainer {
+  padding-top: 16px;
+  padding-bottom: 16px;
+}
+.wheelContainerOuter {
+  position: relative;
+}
+.wheelContainer {
+  border: 1px solid $seperatorColor;
+  border-radius: 8px;
+  height: 240px;
+  overflow-y: scroll;
+}
+.selectedWheel {
+  position: absolute;
+  height: 48px;
+  top: 96px;
+  left: 0px;
+  right: 0px;
+  z-index: 1;
+  background-color: $primary;
+  pointer-events: none;
+}
+
+.wheelItem {
+  height: 48px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}

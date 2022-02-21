@@ -1,0 +1,104 @@
+@import "./variable.scss";
+// Custom header navbar
+#header .navbar-nav .nav-link.active {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 21px;
+  display: flex;
+  align-items: center;
+  text-align: right;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  padding: 12px 0px 12px 0px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #fb4390;
+  @media only screen and (min-width: 992px) {
+    margin: 0px 25px;
+  }
+}
+
+#header .navbar-nav .nav-link {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 21px;
+  display: flex;
+  align-items: center;
+  text-align: right;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  padding: 12px 0px 12px 0px;
+  @media only screen and (min-width: 992px) {
+    margin: 0px 25px;
+  }
+}
+
+.form-label {
+  font-family: "Inter";
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 22px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: $onSurfaceLightColor;
+  margin-bottom: 0.5rem;
+}
+.input-group input {
+  height: $inputHeight;
+}
+.input-group select {
+  height: $inputHeight;
+}
+// .input-group {
+//   height: $inputHeight;
+// }
+.form-control {
+  height: $inputHeight;
+}
+.btn-primary {
+  color: $onPrimaryColor !important;
+}
+.btn-outline-light {
+  color: $onSurfaceLightColor !important;
+  border-color: $onSurfaceLightColor !important;
+}
+.btn-light {
+  color: $onSurfaceColor !important;
+  background-color: $onSurfaceLightColor !important;
+}
+
+.btn-outline-primary {
+  color: $primaryColor !important;
+  background-color: $onPrimaryColor !important;
+}
+.input-group-text {
+  background-color: transparent !important;
+  border: 1px solid transparent !important;
+  border-right: 1px solid transparent !important;
+  border-left: 1px solid $seperatorColor !important;
+  border-top: 1px solid $seperatorColor !important;
+  border-bottom: 1px solid $seperatorColor !important;
+}
+.input-group-text.error {
+  background-color: transparent !important;
+  border: 1px solid transparent !important;
+  border-right: 1px solid transparent !important;
+  border-left: 1px solid $errorColor !important;
+  border-top: 1px solid $errorColor !important;
+  border-bottom: 1px solid $errorColor !important;
+}
+.datePicker.form-control.is-invalid {
+  background-image: none !important;
+}
+.noErrorIcon.form-control.is-invalid {
+  background-image: none !important;
+}
+.modal-content {
+  overflow-x: hidden;
+}
+@import "~bootstrap/scss/bootstrap";

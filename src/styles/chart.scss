@@ -1,0 +1,158 @@
+@import "./variable.scss";
+@import "./globals.scss";
+@import "~bootstrap/scss/bootstrap";
+.dashboardContent {
+  padding: 8px 16px;
+  @media (max-width: 768px) {
+    padding: 0px;
+  }
+}
+
+.chartContainer {
+  padding: 36px 16px 24px 16px;
+  background-color: $surfaceColor;
+  border-color: 1px solid $seperatorColor;
+  border-radius: 4px;
+  @media (max-width: 768px) {
+    border-radius: 0px;
+    border-bottom: 1px dashed $seperatorColor;
+  }
+  height: 100%;
+}
+
+.chartTitle {
+  margin-bottom: 27px;
+  @extend .body16;
+  @extend .textOnSurface;
+  text-transform: uppercase;
+}
+
+.largeChartInfo {
+  font-size: 72px;
+  font-weight: 500;
+  line-height: 72px;
+  @extend .textOnSurface;
+}
+.largeChartInfoNumber {
+  padding: 0px 120px;
+}
+
+.largeChartInfo2 {
+  font-size: 48px;
+  font-weight: 500;
+  line-height: 48px;
+  @extend .textOnSurface;
+}
+
+.xAxis {
+  color: $onSurfaceColor;
+}
+
+.chartTableHeader {
+  @extend .d-flex;
+  @extend .flex-row;
+  @extend .align-items-center;
+  background-color: $backgroundColor;
+  padding: 12px 4px;
+}
+
+.chartTalbeItem {
+  @extend .d-flex;
+  @extend .flex-row;
+  @extend .align-items-center;
+  padding: 14px 4px;
+  border-bottom: 0.5px solid $seperatorColor;
+}
+
+.chartTalbeItemLast {
+  @extend .d-flex;
+  @extend .flex-row;
+  @extend .align-items-center;
+  padding: 14px 4px;
+}
+
+.chartTableItemName {
+  @extend .body16;
+  @extend .textOnSurface;
+}
+
+.chartTableItemValue {
+  @extend .textOnSurface;
+  font-size: 20px;
+  line-height: 24px;
+  text-align: right;
+}
+
+.checkIcon {
+  font-size: 20px;
+  color: $onSurfaceColor;
+}
+.checkLegend {
+  font-size: 16px;
+  color: $onSurfaceColor;
+}
+.checkBoxLegend {
+  @extend .d-flex;
+  @extend .flex-row;
+  @extend .align-items-center;
+  @extend .justify-content-center;
+  width: 14px;
+  height: 14px;
+  border-radius: 4px;
+  margin-right: 4px;
+}
+
+.legendText {
+  @extend .d-flex;
+  @extend .flex-row;
+  @extend .align-items-center;
+  @extend .body14;
+}
+
+.tooltipBox {
+  padding: 13px 16px;
+  background-color: #fff;
+  border-radius: 8px;
+}
+
+.tooltipText {
+  @extend .body12;
+  color: #000;
+}
+
+.tooltipItem {
+  border-bottom: 1px dashed gray;
+  max-width: 150px;
+  min-width: 110px;
+}
+.tooltipItemNoMaxWidth {
+  border-bottom: 1px dashed gray;
+  min-width: 110px;
+}
+.tooltipIncreaseItem {
+  font-size: 8px;
+  color: $successColor;
+  margin-right: 6px;
+}
+
+.tooltipDecreaseItem {
+  font-size: 8px;
+  color: $dangerColor;
+  margin-right: 6px;
+}
+
+.tooltipItemColor {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.tooltipItemColorBox {
+  border-radius: 2px;
+  height: 8px;
+  width: 8px;
+}
+.dropdownDataTooltip {
+  padding: 0px 0px !important;
+  border-radius: 8px !important;
+}
